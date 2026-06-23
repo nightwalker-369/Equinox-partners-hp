@@ -1,0 +1,411 @@
+/* ==========================================================================
+   Equinox Partners — Colors & Type
+   ==========================================================================
+   Core color + type tokens. Imports Google Fonts as a fallback for the
+   licensed brand faces. Substitutions flagged in README.md.
+   ========================================================================== */
+
+/* Webfonts are loaded NON-blocking per surface (see ep-fonts.js / the <link>
+   snippet in README), NOT via a render-blocking remote @import here — a remote
+   @import stalls first paint and leaves card iframes blank when the font CDN
+   is slow or unreachable. The --font-* vars below carry system fallbacks so
+   everything renders instantly regardless. */
+
+:root {
+  /* ── BRAND COLOR PALETTE ── (Notion 確定版) ─────────────────────────── */
+  --ep-navy:       #1A2B5E;   /* Primary. Trust, depth, formality. */
+  --ep-navy-deep:  #111D3F;   /* Deep navy. Body text on light, dark backgrounds. */
+  --ep-gold:       #C9963A;   /* Accent. Daybreak, balance, warmth. */
+  --ep-blue:       #2E86AB;   /* Secondary. Forward motion, clarity. */
+  --ep-off-white:  #F5F7FA;   /* Surface. Quiet, premium space. */
+  --ep-white:      #FFFFFF;
+  --ep-black:      #0A1124;
+
+  /* ── EXTENDED NAVY SCALE (oklch-derived for harmonious gradient) ───── */
+  --ep-navy-50:   #EEF1F8;
+  --ep-navy-100:  #D5DCEB;
+  --ep-navy-200:  #ABB7D5;
+  --ep-navy-300:  #7E8EBA;
+  --ep-navy-400:  #51669D;
+  --ep-navy-500:  #1A2B5E;   /* = brand navy */
+  --ep-navy-600:  #16244F;
+  --ep-navy-700:  #111D3F;   /* = brand navy-deep */
+  --ep-navy-800:  #0B1530;
+  --ep-navy-900:  #060B1D;
+
+  /* ── EXTENDED GOLD SCALE ────────────────────────────────────────────── */
+  --ep-gold-50:   #FBF6EC;
+  --ep-gold-100:  #F1E2BD;
+  --ep-gold-200:  #E5CB8A;
+  --ep-gold-300:  #D9B358;
+  --ep-gold-400:  #D0A347;
+  --ep-gold-500:  #C9963A;   /* = brand gold */
+  --ep-gold-600:  #A87C2D;
+  --ep-gold-700:  #856120;
+  --ep-gold-800:  #604616;
+  --ep-gold-900:  #3E2D0D;
+
+  /* ── EXTENDED BLUE SCALE ────────────────────────────────────────────── */
+  --ep-blue-50:   #EAF3F7;
+  --ep-blue-100:  #C2DEEA;
+  --ep-blue-200:  #8EC1D6;
+  --ep-blue-300:  #5BA4C0;
+  --ep-blue-400:  #3F95B6;
+  --ep-blue-500:  #2E86AB;   /* = brand blue */
+  --ep-blue-600:  #246E8E;
+  --ep-blue-700:  #1B5570;
+  --ep-blue-800:  #133D52;
+  --ep-blue-900:  #0B2535;
+
+  /* ── NEUTRAL / PAPER SCALE ──────────────────────────────────────────── */
+  --ep-paper:     #FAFBFD;   /* near-white page bg */
+  --ep-stone-50:  #F5F7FA;   /* = off-white */
+  --ep-stone-100: #ECEFF5;
+  --ep-stone-200: #D9DEE8;
+  --ep-stone-300: #B8BFCC;
+  --ep-stone-400: #8B93A4;
+  --ep-stone-500: #5E6678;
+  --ep-stone-600: #444B5C;
+  --ep-stone-700: #2B3142;
+  --ep-stone-800: #1A1F2C;
+  --ep-stone-900: #0F1320;
+
+  /* ── SEMANTIC FOREGROUND / BACKGROUND ───────────────────────────────── */
+  /* Light mode (Off White surface) — use Navy + Blue */
+  --bg-page:        var(--ep-off-white);
+  --bg-surface:     var(--ep-white);
+  --bg-surface-alt: var(--ep-stone-50);
+  --bg-inset:       var(--ep-stone-100);
+
+  --fg-primary:    var(--ep-navy-deep);   /* Body */
+  --fg-display:    var(--ep-navy);        /* Headings, brand */
+  --fg-secondary:  var(--ep-stone-600);
+  --fg-muted:      var(--ep-stone-500);
+  --fg-disabled:   var(--ep-stone-400);
+  --fg-on-navy:    var(--ep-off-white);
+  --fg-on-gold:    var(--ep-navy-deep);
+  --fg-link:       var(--ep-blue);
+  --fg-accent:     var(--ep-gold);
+
+  --border-subtle: var(--ep-stone-200);
+  --border-default: var(--ep-stone-300);
+  --border-strong: var(--ep-navy);
+  --hairline:      rgba(26, 43, 94, 0.10);
+
+  /* ── DARK SURFACE PAIR ───────────────────────────────────────────────── */
+  /* Per brand rule: Dark (Deep Navy) surface uses Gold + White */
+  --dark-bg:        var(--ep-navy-deep);
+  --dark-bg-alt:    #0B1530;
+  --dark-fg:        var(--ep-off-white);
+  --dark-fg-muted:  rgba(245, 247, 250, 0.65);
+  --dark-fg-accent: var(--ep-gold);
+  --dark-border:    rgba(245, 247, 250, 0.14);
+  --dark-hairline:  rgba(245, 247, 250, 0.08);
+
+  /* ── SEMANTIC STATE ──────────────────────────────────────────────────── */
+  --state-success: #2E7A55;
+  --state-warning: #C9963A;   /* Use brand gold — matches palette */
+  --state-error:   #B33A3A;
+  --state-info:    var(--ep-blue);
+
+  /* ── TYPE: families ──────────────────────────────────────────────────── */
+  /* Display / Brand serif — classic, formal, slightly narrow.            */
+  /* Cormorant Garamond is a free, refined Garamond derivative; it is the  */
+  /* nearest Google Fonts match to the Trajan/Cormorant feel of the EP    */
+  /* logo. SUBSTITUTION FLAG: see README "Type · Substitutions".          */
+  --font-display:  'Cormorant Garamond', 'Cormorant', 'EB Garamond', 'Noto Serif JP', 'Hiragino Mincho ProN', 'Yu Mincho', serif;
+  --font-display-sc: 'Cormorant SC', 'Cormorant Garamond', serif; /* small-caps */
+
+  /* Body sans — neutral, modern, quiet. Manrope reads well JP-paired.    */
+  --font-body:     'Manrope', 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', system-ui, -apple-system, sans-serif;
+  --font-sans:     var(--font-body);
+
+  /* Japanese-first stacks (when JP comes first). */
+  --font-jp-serif: 'Noto Serif JP', 'Hiragino Mincho ProN', 'Yu Mincho', serif;
+  --font-jp-sans:  'Noto Sans JP', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', system-ui, sans-serif;
+
+  /* Mono — for case-study figures, KPI tables. */
+  --font-mono:     'JetBrains Mono', 'SFMono-Regular', ui-monospace, monospace;
+
+  /* ── TYPE: scale (modular ~1.250) ───────────────────────────────────── */
+  --fs-3xs:  11px;   /* fine print, table micro */
+  --fs-2xs:  12px;
+  --fs-xs:   13px;
+  --fs-sm:   14px;
+  --fs-base: 16px;
+  --fs-md:   18px;
+  --fs-lg:   20px;
+  --fs-xl:   24px;
+  --fs-2xl:  30px;
+  --fs-3xl:  38px;
+  --fs-4xl:  48px;
+  --fs-5xl:  60px;
+  --fs-6xl:  76px;
+  --fs-7xl:  96px;
+
+  /* ── TYPE: leading & tracking ───────────────────────────────────────── */
+  --lh-tight:   1.08;  /* @kind font */
+  --lh-snug:    1.20;  /* @kind font */
+  --lh-display: 1.10;  /* @kind font */
+  --lh-heading: 1.30;  /* @kind font */
+  --lh-body:    1.65;  /* @kind font */
+  --lh-loose:   1.85;  /* @kind font */
+
+  --tracking-tight:  -0.02em;
+  --tracking-normal: 0;
+  --tracking-wide:   0.04em;
+  --tracking-wider:  0.10em;   /* PARTNERS spaced caps */
+  --tracking-widest: 0.22em;   /* eyebrow labels */
+
+  /* ── SPACING SCALE (4-base) ─────────────────────────────────────────── */
+  --space-0:  0;
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-7:  32px;
+  --space-8:  40px;
+  --space-9:  48px;
+  --space-10: 64px;
+  --space-11: 80px;
+  --space-12: 96px;
+  --space-13: 128px;
+  --space-14: 160px;
+  --gutter:   var(--space-7);
+  --margin-page: clamp(20px, 5vw, 96px);
+
+  /* ── RADII ───────────────────────────────────────────────────────────── */
+  /* The brand leans formal — radii are restrained. No pill blobs.        */
+  --radius-none: 0;
+  --radius-xs:   2px;
+  --radius-sm:   4px;
+  --radius-md:   6px;
+  --radius-lg:   10px;
+  --radius-xl:   14px;
+  --radius-2xl:  20px;
+  --radius-pill: 999px;
+
+  /* ── ELEVATION / SHADOW ──────────────────────────────────────────────── */
+  /* Two flavors: paper (formal print-feel) + lift (interactive)          */
+  --shadow-hairline: 0 0 0 1px var(--hairline);
+  --shadow-paper-1:  0 1px 0 rgba(17, 29, 63, 0.04), 0 0 0 1px rgba(17, 29, 63, 0.05);
+  --shadow-paper-2:  0 1px 2px rgba(17, 29, 63, 0.06), 0 0 0 1px rgba(17, 29, 63, 0.06);
+  --shadow-lift-1:   0 2px 8px rgba(17, 29, 63, 0.06), 0 1px 2px rgba(17, 29, 63, 0.04);
+  --shadow-lift-2:   0 8px 24px rgba(17, 29, 63, 0.10), 0 2px 6px rgba(17, 29, 63, 0.06);
+  --shadow-lift-3:   0 24px 60px rgba(17, 29, 63, 0.16), 0 6px 14px rgba(17, 29, 63, 0.08);
+  --shadow-gold-glow: 0 0 0 1px rgba(201, 150, 58, 0.45), 0 6px 18px rgba(201, 150, 58, 0.20);
+  --shadow-inset-rule: inset 0 -1px 0 var(--hairline);
+
+  /* ── MOTION ──────────────────────────────────────────────────────────── */
+  /* Restrained, formal — slow ease, no bounces. */
+  --ease-out:  cubic-bezier(0.22, 0.61, 0.36, 1);  /* @kind other */
+  --ease-in:   cubic-bezier(0.55, 0, 0.7, 0.2);    /* @kind other */
+  --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);       /* @kind other */
+  --dur-1:  120ms;   /* @kind other */
+  --dur-2:  200ms;   /* @kind other */ /* default */
+  --dur-3:  320ms;   /* @kind other */
+  --dur-4:  520ms;   /* @kind other */ /* page-level reveal */
+  --dur-5:  900ms;   /* @kind other */ /* hero sweeps */
+
+  /* ── LAYOUT TOKENS ───────────────────────────────────────────────────── */
+  --content-narrow: 720px;
+  --content-base:   960px;
+  --content-wide:   1200px;
+  --content-max:    1440px;
+
+  /* ── FOCUS ───────────────────────────────────────────────────────────── */
+  --focus-ring:     0 0 0 3px rgba(46, 134, 171, 0.32);
+  --focus-ring-gold: 0 0 0 3px rgba(201, 150, 58, 0.35);
+}
+
+/* ==========================================================================
+   SEMANTIC TYPE STYLES
+   Apply these classes (or copy declarations) for consistent type rhythm.
+   Includes corresponding tags as a base layer.
+   ========================================================================== */
+
+html, body {
+  background: var(--bg-page);
+  color: var(--fg-primary);
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+  line-height: var(--lh-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Eyebrow label — tracked caps in gold or navy. */
+.ep-eyebrow {
+  font-family: var(--font-body);
+  font-size: var(--fs-2xs);
+  font-weight: 600;
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--ep-gold);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.ep-eyebrow::before {
+  content: '';
+  width: 24px;
+  height: 1px;
+  background: currentColor;
+  display: inline-block;
+}
+
+/* Display — used for hero, slide titles, brand moments. */
+.ep-display, h1.ep-display {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(var(--fs-4xl), 6vw, var(--fs-7xl));
+  line-height: var(--lh-display);
+  letter-spacing: var(--tracking-tight);
+  color: var(--fg-display);
+  text-wrap: balance;
+}
+.ep-display-jp {
+  font-family: var(--font-jp-serif);
+  font-weight: 500;
+  font-size: clamp(var(--fs-3xl), 4.5vw, var(--fs-6xl));
+  line-height: 1.30;
+  letter-spacing: 0.02em;
+  color: var(--fg-display);
+}
+
+/* Brand wordmark style — small caps with gold underline */
+.ep-wordmark {
+  font-family: var(--font-display-sc), var(--font-display);
+  font-variant: small-caps;
+  letter-spacing: var(--tracking-wider);
+  font-weight: 500;
+  color: var(--fg-display);
+}
+
+h1, .h1 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: var(--fs-5xl);
+  line-height: var(--lh-display);
+  letter-spacing: var(--tracking-tight);
+  color: var(--fg-display);
+  margin: 0 0 var(--space-6);
+}
+h2, .h2 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: var(--fs-3xl);
+  line-height: var(--lh-snug);
+  letter-spacing: -0.01em;
+  color: var(--fg-display);
+  margin: 0 0 var(--space-5);
+}
+h3, .h3 {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: var(--fs-xl);
+  line-height: var(--lh-heading);
+  letter-spacing: -0.005em;
+  color: var(--fg-display);
+  margin: 0 0 var(--space-4);
+}
+h4, .h4 {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: var(--fs-md);
+  line-height: var(--lh-heading);
+  color: var(--fg-display);
+  margin: 0 0 var(--space-3);
+}
+h5, .h5 {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: var(--fs-sm);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--fg-secondary);
+  margin: 0 0 var(--space-2);
+}
+
+p, .p {
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+  line-height: var(--lh-body);
+  color: var(--fg-primary);
+  margin: 0 0 var(--space-5);
+  text-wrap: pretty;
+}
+.lead, .ep-lead {
+  font-size: var(--fs-lg);
+  line-height: 1.55;
+  color: var(--fg-primary);
+}
+.small, .ep-small {
+  font-size: var(--fs-sm);
+  line-height: 1.55;
+  color: var(--fg-secondary);
+}
+.fineprint, .ep-fineprint {
+  font-size: var(--fs-2xs);
+  line-height: 1.55;
+  color: var(--fg-muted);
+  letter-spacing: 0.01em;
+}
+
+/* Quote — formal pull quote with gold accent. */
+.ep-quote {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: var(--fs-2xl);
+  line-height: 1.40;
+  color: var(--fg-display);
+  border-left: 2px solid var(--ep-gold);
+  padding-left: var(--space-6);
+}
+
+/* Inline */
+strong { font-weight: 600; color: var(--fg-display); }
+em     { font-style: italic; }
+a {
+  color: var(--fg-link);
+  text-decoration-color: rgba(46,134,171,0.30);
+  text-underline-offset: 3px;
+  transition: color var(--dur-2) var(--ease-out), text-decoration-color var(--dur-2) var(--ease-out);
+}
+a:hover { color: var(--ep-blue-700); text-decoration-color: var(--ep-blue-500); }
+
+code, kbd, samp, pre {
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  background: var(--bg-inset);
+  border-radius: var(--radius-sm);
+  padding: 0.12em 0.4em;
+}
+
+/* Numerals — financial / KPI display. Tabular figures. */
+.ep-figure {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-feature-settings: 'tnum' 1, 'lnum' 1;
+  letter-spacing: -0.01em;
+}
+
+/* Selection */
+::selection { background: var(--ep-gold-100); color: var(--ep-navy-deep); }
+
+/* Hairline rule (used everywhere as a section separator) */
+.ep-rule {
+  height: 1px;
+  background: var(--hairline);
+  border: 0;
+  margin: var(--space-7) 0;
+}
+.ep-rule--gold {
+  height: 2px;
+  background: var(--ep-gold);
+  width: 32px;
+  border: 0;
+}

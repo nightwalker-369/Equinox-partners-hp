@@ -1,0 +1,10 @@
+/* ==========================================================================
+   Equinox Partners — Design System · root entrypoint
+   --------------------------------------------------------------------------
+   Consuming projects link THIS file. It pulls in every global stylesheet
+   so a single <link rel="stylesheet" href="styles.css"> is enough.
+   Kit- and deck-specific styles (ui_kits/…/site.css, slides/slides.css)
+   are intentionally NOT imported here — link those only on their surfaces.
+   ========================================================================== */
+
+@import url('./colors_and_type.css');
