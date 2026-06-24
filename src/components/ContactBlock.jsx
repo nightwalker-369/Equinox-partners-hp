@@ -29,9 +29,11 @@ export default function ContactBlock() {
 
   return (
     <section className="ep-section ep-section--dark" id="contact">
+      <div className="ep-contact__header">
+        <span className="ep-section__en ep-section__en--white">Contact</span>
+      </div>
       <div className="ep-contact">
         <div>
-          <span className="ep-section__en ep-section__en--white">Contact</span>
           <span className="ep-eyebrow ep-eyebrow--gold">CONTACT · お問い合わせ</span>
           <h2 className="ep-h2 ep-h2--white">
             共同事業の構想は、<br />
