@@ -25,13 +25,10 @@ body { background: var(--bg-page); color: var(--fg-primary); font-family: var(--
 }
 .ep-eyebrow::before {
   content:''; width:28px; height:1px; background: currentColor;
-  display: inline-block; transform-origin: left; transform: scaleX(1);
-  transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-block; transform-origin: left;
 }
-.ep-anim .ep-eyebrow::before,
-.ep-eyebrow.ep-anim::before { transform: scaleX(0); }
-.ep-anim.ep-in .ep-eyebrow::before,
-.ep-eyebrow.ep-in::before { transform: scaleX(1); }
+.ep-eyebrow.ep-anim::before { transform: scaleX(0); transition: none; }
+.ep-eyebrow.ep-in::before { transform: scaleX(1); transition: transform 0.6s cubic-bezier(0.4,0,0.2,1) 0.45s; }
 .ep-eyebrow--sm { font-size: 10px; gap: 8px; }
 .ep-eyebrow--sm::before { width: 18px; }
 .ep-eyebrow--gold { color: var(--ep-gold); }
