@@ -41,28 +41,6 @@ export default function ContactBlock() {
             座組検討の前段階でも構いません。<br />
             初回相談は無料、守秘で対応します。
           </p>
-          <hr className="ep-rule--gold" />
-          <dl className="ep-contact__meta">
-            <div>
-              <dt>会社</dt>
-              <dd>Equinox Partners 株式会社</dd>
-            </div>
-            <div>
-              <dt>創業</dt>
-              <dd>2021年12月</dd>
-            </div>
-            <div>
-              <dt>本社</dt>
-              <dd>
-                〒251-0025<br />
-                神奈川県藤沢市鵠沼石上2-5-1 湘南鵠沼BLD3C
-              </dd>
-            </div>
-            <div>
-              <dt>代表</dt>
-              <dd>代表取締役社長　新井 康太 / Kota Arai</dd>
-            </div>
-          </dl>
         </div>
         <form className="ep-form" onSubmit={submit}>
           {status === 'done' ? (
@@ -75,7 +53,7 @@ export default function ContactBlock() {
             <>
               <div className="ep-field">
                 <label htmlFor="n">お名前</label>
-                <input id="n" name="お名前" required placeholder="新井 康太" />
+                <input id="n" name="お名前" required placeholder="山田 太郎" />
               </div>
               <div className="ep-field">
                 <label htmlFor="c">会社名</label>
