@@ -8,7 +8,11 @@ const reduce = () =>
 export function runHeroEntrance(root) {
   const hero = root.querySelector('.ep-hero__inner')
   if (!hero || reduce()) return
-  ;[...hero.children].forEach((el, i) => {
+
+  const sub = hero.querySelector('.ep-hero__sub')
+  // 文字送り用に ep-hero__sub を一時的にリストから外す
+  const children = [...hero.children].filter((el) => el !== sub)
+  children.forEach((el, i) => {
     el.classList.add('ep-anim')
     el.style.transitionDelay = i * 120 + 'ms'
   })
@@ -22,7 +26,23 @@ export function runHeroEntrance(root) {
       .querySelectorAll('.ep-hero .ep-anim')
       .forEach((el) => el.classList.add('ep-in'))
   setTimeout(showHero, 60)
-  setTimeout(showHero, 400) // safety if first paint was delayed
+  setTimeout(showHero, 400)
+
+  // 文字送りアニメーション（ep-hero__sub）
+  if (sub) {
+    const text = sub.textContent
+    sub.textContent = ''
+    sub.style.opacity = '1'
+    const startDelay = 700 // ヒーロー登場後に開始
+    const charDelay = 55  // 1文字ごとの間隔(ms)
+    ;[...text].forEach((char, i) => {
+      const span = document.createElement('span')
+      span.textContent = char
+      span.style.cssText = 'opacity:0; transition: opacity 0.2s ease; display:inline;'
+      sub.appendChild(span)
+      setTimeout(() => { span.style.opacity = '1' }, startDelay + i * charDelay)
+    })
+  }
 }
 
 export function runScrollReveal(root) {

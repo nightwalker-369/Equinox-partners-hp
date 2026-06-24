@@ -23,14 +23,24 @@ body { background: var(--bg-page); color: var(--fg-primary); font-family: var(--
   letter-spacing: .22em; text-transform: uppercase; color: var(--ep-gold);
   display: inline-flex; align-items: center; gap: 12px;
 }
-.ep-eyebrow::before { content:''; width:28px; height:1px; background: currentColor; }
+.ep-eyebrow::before {
+  content:''; width:28px; height:1px; background: currentColor;
+  display: inline-block; transform-origin: left; transform: scaleX(1);
+  transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.ep-anim .ep-eyebrow::before,
+.ep-eyebrow.ep-anim::before { transform: scaleX(0); }
+.ep-anim.ep-in .ep-eyebrow::before,
+.ep-eyebrow.ep-in::before { transform: scaleX(1); }
 .ep-eyebrow--sm { font-size: 10px; gap: 8px; }
 .ep-eyebrow--sm::before { width: 18px; }
 .ep-eyebrow--gold { color: var(--ep-gold); }
 .ep-eyebrow--center { display: block; text-align: center; padding-left: .22em; }
 .ep-eyebrow--center::before { display: none; }
 
-.ep-rule--gold { width: 32px; height: 2px; background: var(--ep-gold); border: 0; margin: 18px 0; }
+.ep-rule--gold { width: 32px; height: 2px; background: var(--ep-gold); border: 0; margin: 18px 0; transform-origin: left; }
+.ep-rule--gold.ep-anim { transform: scaleX(0); transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+.ep-rule--gold.ep-in { transform: scaleX(1); }
 .ep-rule--hero { width: 14.3em; font-size: clamp(20px, 2.6vw, 30px); margin: 22px 0 26px; }
 .ep-rule--mission { width: 5.48em; font-size: clamp(36px, 5.5vw, 66px); height: 2px; }
 .ep-rule--gold-tight { margin: 10px 0; }
