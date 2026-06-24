@@ -10,11 +10,12 @@ import Profile from './components/Profile.jsx'
 import CompanyOverview from './components/CompanyOverview.jsx'
 import ContactBlock from './components/ContactBlock.jsx'
 import MarketingFooter from './components/MarketingFooter.jsx'
-import { runScrollReveal, runNavCondense } from './useSiteMotion.js'
+import { runHeroEntrance, runScrollReveal, runNavCondense } from './useSiteMotion.js'
 
 export default function App() {
   useEffect(() => {
     const root = document.getElementById('root')
+    runHeroEntrance(root)
     const cleanupReveal = runScrollReveal(root)
     const cleanupNav = runNavCondense()
     return () => {
