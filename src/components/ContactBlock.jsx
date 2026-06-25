@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 // Contact form submission endpoint.
 // Replace YOUR_FORM_ID with the Formspree form URL once created (https://formspree.io).
-const FORM_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID'
+const FORM_ENDPOINT = 'https://formspree.io/f/xjgqyvle'
 
 // ContactBlock — dark CTA block + contact form (wired to a form-mail endpoint)
 export default function ContactBlock() {
