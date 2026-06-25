@@ -371,17 +371,25 @@ body { background: var(--bg-page); color: var(--fg-primary); font-family: var(--
    ════════════════════════════════════════════════════════════════════ */
 html { scroll-behavior: smooth; }
 
-/* Gradient text (navy → blue → gold) */
+/* Gradient text (navy → blue → gold, animated shift) */
 .ep-grad-text {
-  background: linear-gradient(100deg, var(--ep-navy) 0%, var(--ep-blue) 48%, var(--ep-gold) 100%);
+  background: linear-gradient(100deg, var(--ep-navy) 0%, var(--ep-blue) 30%, var(--ep-gold) 55%, var(--ep-blue) 78%, var(--ep-navy) 100%);
+  background-size: 250% 100%;
   -webkit-background-clip: text; background-clip: text;
   -webkit-text-fill-color: transparent; color: transparent;
+  animation: ep-grad-shift 8s ease-in-out infinite alternate;
 }
-/* Light gradient for dark backgrounds (off-white → gold) */
+/* Light gradient for dark backgrounds (off-white → gold, animated) */
 .ep-grad-text--light {
-  background: linear-gradient(100deg, #f5f7fa 0%, #e8eef6 42%, var(--ep-gold) 100%);
+  background: linear-gradient(100deg, #f5f7fa 0%, #e8eef6 30%, var(--ep-gold) 55%, #e8eef6 78%, #f5f7fa 100%);
+  background-size: 250% 100%;
   -webkit-background-clip: text; background-clip: text;
   -webkit-text-fill-color: transparent; color: transparent;
+  animation: ep-grad-shift 8s ease-in-out infinite alternate;
+}
+@keyframes ep-grad-shift {
+  0%   { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
 }
 
 /* Masked line reveal (hero display + big EN labels) */
@@ -442,6 +450,12 @@ html { scroll-behavior: smooth; }
   background: radial-gradient(circle, rgba(201,150,58,.16), rgba(201,150,58,0) 70%);
   filter: blur(40px);
   pointer-events: none;
+  animation: ep-glow-drift 10s ease-in-out infinite alternate;
+}
+@keyframes ep-glow-drift {
+  0%   { transform: translate(0, 0) scale(1); opacity: 1; }
+  50%  { transform: translate(-60px, -40px) scale(1.4); opacity: 0.7; }
+  100% { transform: translate(30px, 20px) scale(0.85); opacity: 1; }
 }
 .ep-section--dark > *,
 .ep-why > * { position: relative; z-index: 1; }
@@ -484,6 +498,8 @@ html { scroll-behavior: smooth; }
   .ep-reveal-line > span { transform: none !important; transition: none !important; }
   .ep-blob { animation: none !important; }
   .ep-solution__panel { animation: none !important; }
+  .ep-grad-text, .ep-grad-text--light { animation: none !important; background-position: 0% 50%; }
+  .ep-section--dark::after, .ep-why::after { animation: none !important; }
 }
 /* Static exports (print/PDF) must show content even if reveal JS never runs */
 @media print {
