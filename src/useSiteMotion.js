@@ -1,49 +1,9 @@
-// useSiteMotion.js — hero entrance, scroll-reveal, and nav-condense behaviors.
-// Extracted from the original inline script; framework-agnostic DOM logic invoked
-// once after mount. Respects prefers-reduced-motion.
+// useSiteMotion.js — scroll-reveal and nav-condense behaviors.
+// Hero entrance is handled entirely by CSS keyframes (ep-rise / ep-linerise).
+// Respects prefers-reduced-motion.
 
 const reduce = () =>
   window.matchMedia('(prefers-reduced-motion: reduce)').matches
-
-export function runHeroEntrance(root) {
-  const hero = root.querySelector('.ep-hero__inner')
-  if (!hero || reduce()) return
-
-  const sub = hero.querySelector('.ep-hero__sub')
-  // 文字送り用に ep-hero__sub を一時的にリストから外す
-  const children = [...hero.children].filter((el) => el !== sub)
-  children.forEach((el, i) => {
-    el.classList.add('ep-anim')
-    el.style.transitionDelay = i * 120 + 'ms'
-  })
-  const mark = root.querySelector('.ep-hero__mark')
-  if (mark) {
-    mark.classList.add('ep-anim')
-    mark.style.transitionDelay = '480ms'
-  }
-  const showHero = () =>
-    root
-      .querySelectorAll('.ep-hero .ep-anim')
-      .forEach((el) => el.classList.add('ep-in'))
-  setTimeout(showHero, 60)
-  setTimeout(showHero, 400)
-
-  // 文字送りアニメーション（ep-hero__sub）
-  if (sub) {
-    const text = sub.textContent
-    sub.textContent = ''
-    sub.style.opacity = '1'
-    const startDelay = 700 // ヒーロー登場後に開始
-    const charDelay = 55  // 1文字ごとの間隔(ms)
-    ;[...text].forEach((char, i) => {
-      const span = document.createElement('span')
-      span.textContent = char
-      span.style.cssText = 'opacity:0; transition: opacity 0.2s ease; display:inline;'
-      sub.appendChild(span)
-      setTimeout(() => { span.style.opacity = '1' }, startDelay + i * charDelay)
-    })
-  }
-}
 
 export function runScrollReveal(root) {
   if (reduce()) return () => {}
@@ -94,7 +54,7 @@ export function runScrollReveal(root) {
           }
         })
       },
-      { threshold: 0.15, rootMargin: '0px 0px -10% 0px' },
+      { threshold: 0.08, rootMargin: '0px 0px -5% 0px' },
     )
     targets.forEach((el) => io.observe(el))
   }
